@@ -1,4 +1,4 @@
-package com.example2.action;
+package com.example2.controller;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,6 +19,15 @@ import com.example2.bean.User;
 @RequestMapping("/jdbc")
 public class JdbcController {
 
+	
+	@RequestMapping(value = "/index",method = RequestMethod.GET)
+	  public String index() {
+	  
+	  return "index";
+	  
+	  }
+	
+	
 	@Resource
 	private JdbcTemplate jdbcTemplate;
 	@RequestMapping(value ="/userlist",method = RequestMethod.GET)
