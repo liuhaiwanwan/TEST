@@ -20,10 +20,20 @@ public interface UserDao {
 	      @Result(property = "sex", column = "sex"),
 	      @Result(property = "address", column = "address"),
 	  })
+	
+	  @Select("SELECT * FROM user") //3
+	  List<User> getAllUser();
+	
 	  @Select("SELECT * FROM user WHERE id = #{id}") //3
-	  List<User> get(int id);
-	 
-	  @Insert("INSERT INTO user(id,username, sex) VALUES (#{id},#{username}, #{sex})") //3
+	  User get(int id);
+	  
+	  @Insert("INSERT INTO user(username, sex, address) VALUES (#{username}, #{sex}, #{address})") //3
 	  void insert(User user);
 
+	  @Select("DELETE FROM `user` WHERE id = #{id}") 
+	  String del(int id);
+
+	  @Select("UPDATE `user` SET username= #{username},sex=#{sex},address=#{address} WHERE id = #{id}") 
+	  void update(User user);
+	  
 }

@@ -18,16 +18,29 @@ public class UserService {
     return "Hello World!";
   }
  
-  public List<User> showDao(int id) {
+  public List<User> showAllUser() {
+	    return userDao.getAllUser();
+	  }
+  
+  public User showDao(int id) {
     return userDao.get(id);
   }
  
-  public String insert(int id, String username, String sex) { //插入一条记录
+  public String insert(String username, String sex, String address) { //插入一条记录
     User user = new User();
-    user.setId(id);
     user.setUsername(username);
     user.setSex(sex);
+    user.setAddress(address);
     userDao.insert(user);
     return "Insert ( \""+username+"\", sex"+sex+") OK!";
+  }
+  
+  public String del(int id) {
+	  return userDao.del(id);
+  }
+  
+  public String update(User user) {
+	   userDao.update(user);
+	   return "success";
   }
 }

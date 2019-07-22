@@ -1,10 +1,105 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>登录</title>
+<script type="text/javascript">
+    function $(id) {
+        return document.getElementById(id);
+    }
+    
+    
+    function del(id) {
+		var data = {
+            'id' : id,
+	    };
+	    console.log(JSON.stringify(data));// json转化为字符串
+	    $.ajax({
+	        url : '/userController/del',
+	        type : 'GET',/*POST*/
+	        contentType : 'application/json',
+	        dataType : 'json',
+	        data : data,/*JSON.stringify(data),*/
+	        success : function(result) {
+	            if (!result.success) {
+	                showAlertDlg('保存失败！' + result.message);
+	                return;
+	            }
+	            layer.msg('保存成功！', {
+	                icon : 1,
+	                time : 1000
+	            }, function() {
+	               /*  window.location.href = '/mes/ratedVolPowerFreq/list'; */
+	            });
+	        }
+    });
+	}
+    
+    function updateById(id) {
+    	alert(id)
+		var data = {
+            'id' : id,
+	    };
+	    $.ajax({
+	        url : '/userUpdateController/updateById',
+	        type : 'GET',/*POST*/
+	        contentType : 'application/json',
+	        dataType : 'json',
+	        data : data,/*JSON.stringify(data),*/
+	        success : function(date) {
+	        	$("#username").val(date.user.username);
+	        	$("#sex").val(date.user.sex);
+	        	$("#address").val(date.user.address);
+	        	$("#id").val(date.user.id);
+	            if (!date.success) {
+	                showAlertDlg('保存失败！' + result.message);
+	                return;
+	            }
+	            layer.msg('保存成功！', {
+	                icon : 1,
+	                time : 1000
+	            }, function() {
+	                window.location.href = '/mes/ratedVolPowerFreq/list';
+	            });
+	        }
+    });
+	}
+</script>
+
+</head>
+<script src="/js/jquery-3.4.1.js"></script>
 </head>
 <body>
-
+<table>
+		<tr>
+			<th>id</th>
+			<th>姓名</th>
+			<th>性别</th>
+			<th>地址</th>
+		</tr>
+		<tr th:each="user : ${users}">
+			<th th:text = "${user.id}"></th>
+			<th th:text = "${user.username}"></th>
+			<th th:text = "${user.sex}"></th>
+			<th th:text = "${user.address}"></th>
+			<th><input type="button" value="修改" th:onclick="|javascript:updateById('${user.id}')|"/></th>
+			<th><input type="button" value="删除" th:onclick="|javascript:del('${user.id}')|"/></th>
+		</tr>
+		
+	</table>
+	 <form action="/userController/insert" method="GET" onsubmit="return add()">
+		<th>姓名：<input type="username" name="username"/></th>
+		<th>性别：<input type="sex" name="sex"/></th>
+		<th>地址：<input type="address" name="address"/></th>
+		<input type="submit" value="添加"/>
+	</form>
+	
+	<form action="/userController/update" method="GET">
+		<th>id：<input type="id" name="id" id="id"/></th>
+		<th>姓名：<input type="username" name="username" id="username"/></th>
+		<th>性别：<input type="sex" name="sex" id="sex"/></th>
+		<th>地址：<input type="address" name="address" id="address"/></th>
+		<input type="submit" value="修改"/>
+	</form>
 </body>
 </html>
