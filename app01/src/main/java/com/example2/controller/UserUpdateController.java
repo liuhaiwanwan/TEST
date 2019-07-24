@@ -1,12 +1,10 @@
 package com.example2.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +18,17 @@ import com.example2.service.UserService;
 public class UserUpdateController {
   @Autowired //自动连接到UserService Bean
   private UserService userService;
- 
+  
+  @ResponseBody
+  @RequestMapping(value="/del")
+  public Map<String,String> delUser(int id) {
+	   String result = null;
+	   userService.del(id);
+	   result = "1";
+	   Map<String,String> map = new HashMap<>();
+	   map.put("success", result);
+	   return map;
+  }
   
   @ResponseBody
   @RequestMapping(value="/updateById")

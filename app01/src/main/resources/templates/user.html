@@ -4,39 +4,34 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>登录</title>
 <script type="text/javascript">
-    function $(id) {
-        return document.getElementById(id);
-    }
-    
-    
     function del(id) {
 		var data = {
             'id' : id,
 	    };
-	    console.log(JSON.stringify(data));// json转化为字符串
+	    /* console.log(JSON.stringify(data)); */// json转化为字符串
 	    $.ajax({
-	        url : '/userController/del',
-	        type : 'GET',/*POST*/
+	        url : '/userUpdateController/del',
+	        type : 'GET',
 	        contentType : 'application/json',
 	        dataType : 'json',
-	        data : data,/*JSON.stringify(data),*/
+	        data : data,
 	        success : function(result) {
-	            if (!result.success) {
-	                showAlertDlg('保存失败！' + result.message);
+	        	console.log(result)
+	            if (result.success) {
+	            	window.location.href = '/userController/user'; 
 	                return;
 	            }
 	            layer.msg('保存成功！', {
 	                icon : 1,
 	                time : 1000
 	            }, function() {
-	               /*  window.location.href = '/mes/ratedVolPowerFreq/list'; */
+	                 window.location.href = '/userController/user'; 
 	            });
 	        }
-    });
+    }); 
 	}
     
     function updateById(id) {
-    	alert(id)
 		var data = {
             'id' : id,
 	    };
@@ -59,7 +54,7 @@
 	                icon : 1,
 	                time : 1000
 	            }, function() {
-	                window.location.href = '/mes/ratedVolPowerFreq/list';
+	                window.location.href = '/userController/insert';
 	            });
 	        }
     });
@@ -87,6 +82,8 @@
 		</tr>
 		
 	</table>
+	
+
 	 <form action="/userController/insert" method="GET" onsubmit="return add()">
 		<th>姓名：<input type="username" name="username"/></th>
 		<th>性别：<input type="sex" name="sex"/></th>

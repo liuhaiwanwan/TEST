@@ -38,21 +38,6 @@ public class UserController {
      return "user";
   }
   
-  @RequestMapping(value="/del")
-  public String delUser(int id, Model model) {
-	   userService.del(id);
-	   List<User> userList = userService.showAllUser();
-	   model.addAttribute("users", userList);
-	   return "user";
-  }
-  
-  @RequestMapping(value="/updateById")
-  public String  updateById(int id,Model model){
-	  User user = userService.showDao(id);
-	  model.addAttribute("userById", user);
-	  return "user";
-
-  }
   @RequestMapping(value="/update")
   public String  update(User user,Model model){
 	  userService.update(user);
