@@ -1,12 +1,17 @@
 package com.example2.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example2.DemoApplication;
 import com.example2.bean.User;
@@ -22,12 +27,15 @@ public class UserController {
   public String show() {
     return userService.show();
   }
- 
+  @ResponseBody
   @RequestMapping(value = "/user")
-  public Object showDao(Model model) {
+  public Object showDao() {
 	  List<User> userList = userService.showAllUser();
-	  model.addAttribute("users", userList);
-    return "user";
+	  Map<String,Object> map = new HashMap<>();
+	  map.put("total", "10");
+	  map.put("rows", userList);
+	  return map;
+//    return "management";
   }
  
   @RequestMapping(value="/insert")
