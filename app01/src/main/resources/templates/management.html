@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="/js/jquery-3.4.1.js"></script>
+<link href='/easyui/jquery-easyui-1.5.1/themes/default/easyui.css' rel='stylesheet' type='text/css'/>
+<link href='/easyui/jquery-easyui-1.5.1/themes/icon.css' rel='stylesheet' type='text/css'/>
+<link href='/easyui/jquery-easyui-1.5.1/demo/demo.css' rel='stylesheet' type='text/css'/>
+<script type='text/javascript' src='/easyui/jquery-easyui-1.5.1/jquery.min.js'></script>
+<script type='text/javascript' src='/easyui/jquery-easyui-1.5.1/jquery.easyui.min.js'></script>
+<script type='text/javascript' src='/easyui/jquery-easyui-1.5.1/locale/easyui-lang-zh_CN.js'></script>
+<title>登录</title>
+<script type="text/javascript">
+$(document).ready(function(){
+	fLoadTable();
+	show();
+	
+    }); 
+function show(){
+	$.ajax({
+        url : '/userController/user',
+        type : 'GET',
+        contentType : 'application/json',
+        dataType : 'json',
+        success : function(data) {
+        	$('#userList').datagrid('loadData',data);
+           /*  if (!data.success) {
+            	window.location.href = '/userController/user'; 
+                return;
+            }
+            layer.msg('保存成功！', {
+                icon : 1,
+                time : 1000
+            }, function() {
+                  window.location.href = '/userController/user';
+            }); */
+        }
+}); 
+} 
+function fLoadTable(){
+    $('#userList').datagrid({
+        title: '用户列表',
+        width: 700,
+        height: 500,
+        fitColumns: true,
+        columns : [
+    	   [ { 
+             field : 'id', //每一列的名字
+             width : '100', 
+             title:'ID',
+             checkbox:true 
+        	 }, { 
+	           field : 'username', 
+	           title : '姓名', 
+	           width : '100', 
+	           align : 'center', 
+       		},{ 
+	          field : 'birthday', 
+	          title : '生日', 
+	          width : '100', 
+	          align : 'center', 
+		       },{ 
+	           field : 'sex', 
+	           title : '性别', 
+	           width : '100', 
+	           align : 'center', 
+	      },{ 
+	          field : 'address', 
+	          title : '地址', 
+	          width : '100', 
+	          align : 'center', 
+	       }
+	    ] 
+    	   ],
+	 idField:'id', 
+	 loadMsg:'Processing, please wait …', 
+	 pagination:true 
+	});
+	} 
+</script>
+
+</head>
+
+<body>
+		<div id="dgtoolbar">
+            <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUsers()">添加用户</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-cut" plain="true" onclick="removeUsers()">删除用户</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="editUsers()">修改信息</a>
+        </div>
+        <table id="userList"></table>
+        
+
+
+</body>
+</html>

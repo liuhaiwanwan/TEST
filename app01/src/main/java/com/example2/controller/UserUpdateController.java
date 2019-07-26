@@ -5,15 +5,15 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.example2.DemoApplication;
 import com.example2.bean.User;
 import com.example2.service.UserService;
 
-@RestController //声明为一个Restful的Controller
+@Controller//声明为一个Restful的Controller
 @RequestMapping("/userUpdateController")
 public class UserUpdateController {
   @Autowired //自动连接到UserService Bean
