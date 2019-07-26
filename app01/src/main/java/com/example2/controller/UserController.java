@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.stereotype.Controller;
@@ -22,10 +20,10 @@ import com.example2.service.UserService;
 public class UserController {
   @Autowired //自动连接到UserService Bean
   private UserService userService;
- 
+
   @RequestMapping(value = "/show")
   public String show() {
-    return userService.show();
+    return "management";
   }
   @ResponseBody
   @RequestMapping(value = "/user")
@@ -37,7 +35,11 @@ public class UserController {
 	  return map;
 //    return "management";
   }
- 
+ /**
+  * 插入一条用户信息
+  * @author liuhaiwan
+  * @return
+  */
   @RequestMapping(value="/insert")
   public String insert(String username, String sex, String address, Model model) {
      userService.insert(username, sex, address);

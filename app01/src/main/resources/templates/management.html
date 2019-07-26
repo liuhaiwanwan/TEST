@@ -40,7 +40,7 @@ function show(){
 function fLoadTable(){
     $('#userList').datagrid({
         title: '用户列表',
-        width: 700,
+        width: 1000,
         height: 500,
         fitColumns: true,
         columns : [
@@ -87,9 +87,6 @@ function fLoadTable(){
             <a href="#" class="easyui-linkbutton" iconCls="icon-cut" plain="true" onclick="removeUsers()">删除用户</a>
             <a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="editUsers()">修改信息</a>
         </div>
-        <table id="userList"></table>
-        
-
-
+		<table id="userList"></table>
 </body>
 </html>

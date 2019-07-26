@@ -23,8 +23,7 @@ public class JdbcController {
 	@RequestMapping(value = "/index",method = RequestMethod.GET)
 	  public String index() {
 	  
-	  return "management";
-	  
+	  return "main";
 	  }
 	
 	
