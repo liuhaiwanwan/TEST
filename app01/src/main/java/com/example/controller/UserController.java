@@ -5,13 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.DemoApplication;
 import com.example.bean.User;
 import com.example.service.UserService;
 
@@ -56,8 +54,5 @@ public class UserController {
 	  return "user";
 
   }
-  public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
-	}
 }
 
