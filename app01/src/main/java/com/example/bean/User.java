@@ -1,4 +1,4 @@
-package com.example2.bean;
+package com.example.bean;
 
 import java.util.Date;
 public class User{

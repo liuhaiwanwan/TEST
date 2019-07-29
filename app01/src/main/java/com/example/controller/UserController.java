@@ -1,4 +1,4 @@
-package com.example2.controller;
+package com.example.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -11,9 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example2.DemoApplication;
-import com.example2.bean.User;
-import com.example2.service.UserService;
+import com.example.DemoApplication;
+import com.example.bean.User;
+import com.example.service.UserService;
 
 @Controller //声明为一个Restful的Controller
 @RequestMapping("/userController")

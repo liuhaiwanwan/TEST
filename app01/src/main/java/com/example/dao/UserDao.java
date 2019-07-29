@@ -1,4 +1,4 @@
-package com.example2.dao;
+package com.example.dao;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 
-import com.example2.bean.User;
+import com.example.bean.User;
 
 @Mapper
 public interface UserDao {
@@ -26,6 +26,9 @@ public interface UserDao {
 	
 	  @Select("SELECT * FROM user WHERE id = #{id}") //3
 	  User get(int id);
+	  
+	  @Select("SELECT * FROM user WHERE memPhone = #{memPhone}") //3
+	  User getPhon(String memPhone);
 	  
 	  @Insert("INSERT INTO user(username, sex, address) VALUES (#{username}, #{sex}, #{address})") //3
 	  void insert(User user);

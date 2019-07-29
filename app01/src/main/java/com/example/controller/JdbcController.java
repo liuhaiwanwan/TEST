@@ -1,4 +1,4 @@
-package com.example2.controller;
+package com.example.controller;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.example2.bean.User;
+import com.example.bean.User;
 
 @Controller
 @RequestMapping("/jdbc")

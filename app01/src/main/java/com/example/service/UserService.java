@@ -1,12 +1,12 @@
-package com.example2.service;
+package com.example.service;
  
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example2.bean.User;
-import com.example2.dao.UserDao;
+import com.example.bean.User;
+import com.example.dao.UserDao;
  
 @Service //声明成一个spring bean
 public class UserService {
@@ -43,4 +43,9 @@ public class UserService {
 	   userDao.update(user);
 	   return "success";
   }
+  
+  public User selectByPhone(String memPhone) {
+	    return userDao.getPhon(memPhone);
+	  }
+  
 }
