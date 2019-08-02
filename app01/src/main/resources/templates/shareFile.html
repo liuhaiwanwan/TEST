@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="/js/jquery-3.4.1.js"></script>
+<link href='/easyui/jquery-easyui-1.5.1/themes/default/easyui.css' rel='stylesheet' type='text/css'/>
+<link href='/easyui/jquery-easyui-1.5.1/themes/icon.css' rel='stylesheet' type='text/css'/>
+<link href='/easyui/jquery-easyui-1.5.1/demo/demo.css' rel='stylesheet' type='text/css'/>
+<script type='text/javascript' src='/easyui/jquery-easyui-1.5.1/jquery.min.js'></script>
+<script type='text/javascript' src='/easyui/jquery-easyui-1.5.1/jquery.easyui.min.js'></script>
+<script type='text/javascript' src='/easyui/jquery-easyui-1.5.1/locale/easyui-lang-zh_CN.js'></script>
+<title>登录</title>
+<script type="text/javascript">
+$(function () {
+    
+    loadData();
+});
+//展示数据
+function loadData() {
+    $("#fileList").datagrid({
+        url:'/shareFileController/fileList',
+        width: 1000,
+        height: 400,
+        rownumbers:true,
+        fitColumns:true,
+        pagination:true,
+        pageSize:5,
+        pageList:[5,10,15],
+        pageNumber:1,
+        toolbar:'#toolbar2',
+        columns:[
+        	[
+        	{ 
+                field : 'id', //每一列的名字
+                width : '100', 
+                title:'ID',
+                checkbox:true 
+           	 }, { 
+   	           field : 'fileName', 
+   	           title : '文件路径', 
+   	           width : '100', 
+   	           align : 'center', 
+          		},{ 
+   	          field : 'fileContent', 
+   	          title : '文件内容', 
+   	          width : '100', 
+   	          align : 'center', 
+   		       },{ 
+   	           field : 'remark',
+   	           title : '备注', 
+   	           width : '100', 
+   	           align : 'center', 
+   	      }
+        ]],
+        toolbar: [{
+            id: 'btnGet',
+            text: '上传',
+            iconCls: 'icon-add',
+            handler: function () {
+            	uploadidalogonline();
+            }
+        },
+        {
+            id: 'btnDelete',
+            text: '删除',
+            iconCls: 'icon-remove',
+            handler:
+                function () {
+            	deleteFileInfo();
+                }
+        },
+        {
+            id: 'btnEdit',
+            text: '下载',
+            iconCls: 'icon-edit',
+            handler:
+                function () {
+                    DownlodFileInfo();
+                }
+        }
+        ],
+    })
+}
+	
+  
+    function uploadidalogonline() {
+        $("#fam").form("clear");
+        $('#uploadonlineinfo').window('open').dialog('setTitle','文件上传');
+
+    }
+    function uploadonline() {
+        var add="/shareFileController/onlineupload";
+        $('#fam').form('submit',{
+            url: add,
+            onSubmit: function(){
+
+            },
+            success: function(result){
+                var result = eval('('+result+')');
+
+                if (result.success){
+                    $('#uploadonlineinfo').window('close');
+                    $('#fileList').datagrid('reload');
+                    $.messager.show({
+                        title: 'Success',
+                        msg: '上传成功'
+                    });
+                } else {
+                    $.messager.show({
+                        title: 'Error',
+                        msg: '文件不能为空，请重新选择文件！'
+                    });
+                }
+            }
+        });
+    }
+    
+  //下载文件
+    function DownlodFileInfo()
+    {
+        //判断是否选中
+        var rows = $('#fileList').datagrid('getSelections');
+            if (!rows || rows.length == 0) {
+                $.messager.alert("提醒", "请选择要下载的文件!", "error");
+                return;
+            }
+            else
+            {
+            	if (confirm("确定要下载吗")) {
+                    var length = rows.length; 
+                    var idStr = "";
+                    for (var i = 0; i < length; i++) {
+                    	if( i == length-1){
+                    		idStr = idStr + rows[i]["id"];
+                    	}else{
+                    		idStr = idStr + rows[i]["id"] + ',';
+                    	}
+                        
+                    }
+	            var data = {
+	                    'ids' : idStr,
+	        	    };
+	            	$.ajax({
+	                       url : '/shareFileController/download',
+	                       type : 'GET',
+	                       contentType : 'application/json',
+	                       dataType : 'json',
+	                       data : data,
+	                       success : function(result){
+	                    	   $.messager.show({
+	                               title: 'Success',
+	                               msg: '下载成功'
+	                           });
+	                       }
+	                                   
+	            	})
+            }
+    	}
+    }
+  //删除数据
+    function deleteFileInfo() {
+    	//判断是否选中
+        /* var rows = $('#fileList').datagrid('getSelections');
+            if (!rows || rows.length == 0) {
+                $.messager.alert("提醒", "请选择要删除的文件!", "error");
+                return;
+            }
+            else
+            {
+            	if (confirm("确定要删除吗")) {
+                    var length = rows.length; 
+                    var idStr = "";
+                    for (var i = 0; i < length; i++) {
+                    	if( i == length-1){
+                    		idStr = idStr + rows[i]["id"];
+                    	}else{
+                    		idStr = idStr + rows[i]["id"] + ',';
+                    	}
+                        
+                    }
+	            var data = {
+	                    'ids' : idStr,
+	        	    };
+            	$.ajax({
+        	        url : '/shareFileController/delFile',
+        	        type : 'GET',
+        	        contentType : 'application/json',
+        	        dataType : 'json',
+        	        data : data,
+        	        success : function(result) {
+        	        	console.log(result);
+        	        	$('#fileList').datagrid('reload');
+                        $('#tt').datagrid('clearSelections');
+        	        }
+            	}); */
+            	var rows = $('#fileList').datagrid('getSelections');
+                var length = rows.length;
+                var idStr = "";
+                for (var i = 0; i < length; i++) {
+                    idStr = idStr + rows[i]["id"] + ',';
+                } 
+                //注意最后一个多了一个逗号
+                /* $.post("/UserInfo/Delete", { "num": idStr }, function (data) {
+                    if (data == "OK") {
+                        // loadData();这样将会加载到第一页了
+                        $('#tt').datagrid('reload');
+                        $('#tt').datagrid('clearSelections');
+                    }
+                    else if (data == "NO") {
+                        $.messager.alert("提醒", "删除失败", "error");
+                    }
+                }) 
+            }
+        }
+
+    }
+</script>
+
+</head>
+
+<body>
+		<table id="fileList"></table>
+		<!------添加数据-------->
+    <div id="uploadonlineinfo" class="easyui-window" style="width:380px;padding:10px 40px" closed="true">
+      <form id="fam" method="post" enctype="multipart/form-data">
+	        <table border="0" style="margin-top:4px;" width="100%" align="center">
+	            <tr>
+	                <td>
+	                                     选择文件:<input class="easyui-filebox" name="fileName" data-options="prompt:'文件上传'"></input>
+	                </td>
+	            </tr>
+	             <tr>
+	                <td>
+	                                      文件内容:<input class="easyui-textbox"  id="addFileContent" name="fileContent"></input>
+	                </td>
+	            </tr>
+	             <tr>
+	                <td>
+	                                      备注:       <input class="easyui-textbox"  id="remark" name="remark"></input>
+	                </td>
+	            </tr>
+	        </table>
+	    </form>
+
+	    <div data-options="region:'south',border:false" style="text-align:center;padding:5px 0 0;">
+	        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)" onclick="uploadonline();" style="width:80px">上传</a>
+	    </div>
+	</div>
+</body>
+</html>

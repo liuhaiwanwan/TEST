@@ -13,7 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.example.bean.User;
+import com.example.entity.User;
 
 @Controller
 @RequestMapping("/jdbc")
