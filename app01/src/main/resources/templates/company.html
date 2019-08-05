@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="/js/jquery-3.4.1.js"></script>
+<link href='/easyui/jquery-easyui-1.5.1/themes/default/easyui.css' rel='stylesheet' type='text/css'/>
+<link href='/easyui/jquery-easyui-1.5.1/themes/icon.css' rel='stylesheet' type='text/css'/>
+<link href='/easyui/jquery-easyui-1.5.1/demo/demo.css' rel='stylesheet' type='text/css'/>
+<script type='text/javascript' src='/easyui/jquery-easyui-1.5.1/jquery.min.js'></script>
+<script type='text/javascript' src='/easyui/jquery-easyui-1.5.1/jquery.easyui.min.js'></script>
+<script type='text/javascript' src='/easyui/jquery-easyui-1.5.1/locale/easyui-lang-zh_CN.js'></script>
+<title>登录</title>
+
+
+</head>
+
+<body>
+               <table style="border-collapse:separate; border-spacing:0px 10px;">
+               <tr>
+               <th style="text-align:left;"><font face="方正幼圆" style="font-size:16px;">基本信息:    </font></th>
+               </tr>
+               <tr>
+               <br>
+               </tr>
+               <tr>
+               <th style="text-align:right;"><font face="方正幼圆" style="font-size:13px;color:#777777" >ID: &ensp;</th>
+               <th style="text-align:left;width:70%"> <div id="id" ></div></th>  
+               </tr>
+               <tr>
+               <th style="text-align:right;"><font face="方正幼圆" style="font-size:13px;color:#777777" >名称:    &ensp;</th> 
+               <th style="text-align:left;width:70%"> <div id="company_name_head"><div id="company_name" ></div></th>
+               <th><div id="company_name_button"><a href="#" region="center"  onclick="go('company_name')">
+			   <font face="方正幼圆" style="font-size:13px;color:#46a3ff" >修改</a></div></th> 
+               </div>
+               </tr>
+               <tr>
+               <th style="text-align:right;"><font face="方正幼圆" style="font-size:13px;color:#777777 " >法人:   &ensp; </th>  
+               <th style="text-align:left;width:70%"><div id="legal_person_head"> <div id="legal_person"></div></th>
+               <th><div id="legal_person_button"><a href="#" region="center"  onclick="go('legal_person')">
+			   <font face="方正幼圆" style="font-size:13px;color:#46a3ff" >修改</a></div></th> 
+               </div>
+               </tr>
+               <tr>
+               <th style="text-align:right;"><font face="方正幼圆" style="font-size:13px;color:#777777 " >电话:   &ensp; </th>   
+               <th style="text-align:left;width:70%"><div id="legal_person_phone_head"> <div id="legal_person_phone"></div> </th>
+               <th><div id="legal_person_phone_button"><a href="#" region="center"  onclick="go('legal_person_phone')">
+			   <font face="方正幼圆" style="font-size:13px;color:#46a3ff" >修改</a></div></th> 
+               </div>
+               </tr>
+               <tr>
+               <th style="text-align:right;"><font face="方正幼圆" style="font-size:13px;color:#777777 " >地址: &ensp;  </th> 
+               <th style="text-align:left;width:70%"><div id="company_address_head"><div id="company_address"></div></th>
+               <th><div id="company_address_button"><a href="#" region="center"  onclick="go('company_address')">
+			   <font face="方正幼圆" style="font-size:13px;color:#46a3ff" >修改</a></div></th> 
+               </div>
+               </tr>
+               <tr>
+               <th style="text-align:right;"><font face="方正幼圆" style="font-size:13px;color:#777777 " >备注:  &ensp; </th> 
+               <th style="text-align:left;width:70%"><div id="remark_head"><div id="remark" ></div></th>
+               <th><div id="remark_button"><a href="#" region="center"  onclick="go('remark')">
+			   <font face="方正幼圆" style="font-size:13px;color:#46a3ff" >修改</a></div></th> 
+               </div>
+               </tr>
+               <tr>
+               <br>
+               </tr>
+               <tr>
+               <th style="text-align:left;"><font face="方正幼圆" style="font-size:16px;">账号信息:   &ensp; </th>
+               </tr>
+               <tr>
+               <br>
+               </tr>
+               <tr>
+               <th style="text-align:right;"><font face="方正幼圆" style="font-size:13px;color:#777777 " >账号: &ensp;  </th>  
+               <th style="text-align:left;width:70%"><div id="user_name"></div></th>
+               </tr>
+               <tr>
+               <th style="text-align:right;"><font face="方正幼圆" style="font-size:13px;color:#777777 " >手机: &ensp;   </th>  
+               <th style="text-align:left;width:70%"><div id="mobile_phone_head"><div id="mobile_phone" ></div></th>
+               <th><div id="mobile_phone_button"><a href="#" region="center"  onclick="go('mobile_phone')">
+			   <font face="方正幼圆" style="font-size:13px;color:#46a3ff" >修改</a></div></th> 
+               </div>
+               </tr>
+               <tr>
+               <th style="text-align:right;"><font face="方正幼圆" style="font-size:13px;color:#777777 " >邮箱:  &ensp;  </th> 
+               <th style="text-align:left;width:70%"><div id="email_head"><div id="email" ></div></th>
+               <th><div id="email_button"><a href="#" region="center"  onclick="go('email')">
+			   <font face="方正幼圆" style="font-size:13px;color:#46a3ff" >修改</a></div></th> 
+               </div>
+               </tr>
+               <tr>
+               <th style="text-align:right;"><font face="方正幼圆" style="font-size:13px;color:#777777 " >密码: &ensp;  </th>  
+               <th style="text-align:left;width:70%"> <div id="login_password_head">  <div id="login_password"></div></th>
+               <th><div id="login_password_button"><a href="#" region="center"  onclick="password()" >
+			   <font face="方正幼圆" style="font-size:13px;color:#46a3ff" >修改</a></div></th> 
+               </div>
+			   </tr>
+               <tr>
+               <br>
+               </tr>
+                <tr>
+                <th style="text-align:left;"><font face="方正幼圆" style="font-size:16px;">语言设置:   &ensp;</th>
+                </tr>
+                <tr>
+               <br>
+               </tr>
+                <tr>
+               <th style="text-align:right;"><font face="方正幼圆" style="font-size:13px;color:#777777 " >语言:   &ensp; </th>  
+               <th style="text-align:left;width:70%"> <div id="language_head"> <div id="language"></div></th>
+               <th><div id="language_button"><a href="#" region="center"  onclick="go('language')">
+			   <font face="方正幼圆" style="font-size:13px;color:#46a3ff" >修改</a></div></th> 
+               </div>
+               </tr>
+			    <tr>
+               <br>
+               </tr>
+			    </table>
+			    
+			  <table>
+			   <tr>
+			   <th style="text-align:left;width:40px"><div id="total_modify_button"><a href="#" region="center" class="easyui-linkbutton" onclick="total_go()">
+			   <font face="方正幼圆" style="font-size:13px;color:#46a3ff" >修改</a></div></th> 
+			   <th style="text-align:left;width:40px"><div id="total_submit_button"><a href="#" region="center" class="easyui-linkbutton" onclick="total_update_Info()">
+			   <font face="方正幼圆" style="font-size:13px;color:#46a3ff" >提交</a></div></th> 
+			   <th style="text-align:left;width:40px"><div id="total_cancel_button"><a href="#" region="center" class="easyui-linkbutton" onclick="total_re()">
+			   <font face="方正幼圆" style="font-size:13px;color:#46a3ff" >取消</a></div></th> 
+               </tr>
+			   </table>
+         
+          
+<div id="password_dialog"  resizable="true" closed="true" class="easyui-dialog" title="详情" data-options="iconCls:'icon-save'" style="width:20%;height:50%;padding:10px">
+    <div region="center"  border="false" style="padding: 10px; background: #fff; border: 1px solid #ccc;">
+         <form id="editPasswordForm">
+               <table cellpadding=3>
+            <tr>
+            <td>旧密码：</td>
+               <td><input required="true" data-options="validType:'length[3,6]'" id="oldPassword" type="Password" class="easyui-textbox" /></td>
+            </tr>
+            <tr>
+            <td>新密码：</td>
+               <td><input required="true" data-options="validType:'length[3,6]'" id="newPassword" type="Password" class="easyui-textbox" /></td>
+            </tr>
+            <tr>
+            <td>确认密码：</td>
+               <td><input required="true" data-options="validType:'length[3,6]'" id="rePassword" type="Password" class="easyui-textbox" /></td>
+            </tr>
+                 
+            </table>
+    
+            <a href="#" region="center" class="easyui-linkbutton" icon="icon-ok" onclick="confirm_password()">确认</a>
+        
+            </form>
+      </div>     
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+var id=2;
+	showById(2);
+	//隐藏提交按钮
+	document.getElementById('total_submit_button').style.display="none";//不显示
+	//隐藏取消按钮
+    document.getElementById('total_cancel_button').style.display="none";//不显示
+    }); 
+function show(){
+//alert(122);
+} 
+function showById(id){
+	var data = {
+		'id':	id
+	};
+//	alert(122);
+	$.ajax({
+		url:'/companyInfoController/seekById',
+        type : 'GET',
+        contentType : 'application/json',
+		dataType : 'json',
+	    data : data,
+	   
+        success : function(result) {
+			console.log(result);
+		
+        document.getElementById('id').innerHTML=result.id;
+        document.getElementById('company_name').innerHTML=result.companyName;
+		document.getElementById('legal_person').innerHTML=result.legalPerson;
+		document.getElementById('legal_person_phone').innerHTML=result.legalPersonPhone;
+		document.getElementById('company_address').innerHTML=result.companyAddress;
+        document.getElementById('remark').innerHTML=result.remark;
+		document.getElementById('user_name').innerHTML=result.user_name;
+		document.getElementById('mobile_phone').innerHTML=result.mobile_phone;
+		document.getElementById('email').innerHTML=result.email;
+        document.getElementById('login_password').innerHTML=result.loginPassword;	
+		document.getElementById('language').innerHTML=result.language;
+			
+        }
+        });
+    }
+//修改按钮
+function go(Info){
+var O1 = Info;
+hide_modify_button();
+document.getElementById(O1).style.display="none";//不显示
+AddInput(Info,'1');
+} 
+//隐藏修改按钮
+function hide_modify_button()
+{
+var C=new Array(8);
+C[0]='company_name'       ;
+C[1]='legal_person'       ;
+C[2]='legal_person_phone' ;
+C[3]='company_address'    ;
+C[4]='remark'             ;
+C[5]='mobile_phone'       ;
+C[6]='email'              ;
+C[7]='language'           ;
+for(i=0;i<8;i++)
+{
+  document.getElementById(C[i]+"_button").style.display="none";//不显示
+} 
+document.getElementById("total_modify_button").style.display="none";//不显示
+
+}
+
+//隐藏修改按钮
+function display_modify_button()
+{
+var C=new Array(8);
+C[0]='company_name'       ;
+C[1]='legal_person'       ;
+C[2]='legal_person_phone' ;
+C[3]='company_address'    ;
+C[4]='remark'             ;
+C[5]='mobile_phone'       ;
+C[6]='email'              ;
+C[7]='language'           ;
+for(i=0;i<8;i++)
+{
+  document.getElementById(C[i]+"_button").style.display="block";//不显示
+} 
+document.getElementById("total_modify_button").style.display="block";//不显示
+}
+//总修改按钮
+function total_go(){
+var C=new Array(8);
+C[0]='company_name'       ;
+C[1]='legal_person'       ;
+C[2]='legal_person_phone' ;
+C[3]='company_address'    ;
+C[4]='remark'             ;
+C[5]='mobile_phone'       ;
+C[6]='email'              ;
+C[7]='language'           ;
+for(i=0;i<8;i++)
+{
+  document.getElementById(C[i]).style.display="none";//不显示 
+  document.getElementById(C[i]+"_button").style.display="none";//不显示
+} 
+document.getElementById("total_modify_button").style.display="none";//不显示
+total_AddInput();
+} 
+
+//恢复文字框、隐藏input
+function re(Info,str) {
+
+document.getElementById('total_modify_button').style.display="block";//显示 
+var t1=Info+"_head";
+var t2=Info+"_input";
+var t3=Info+"_btn1";
+var t4=Info+"_btn2";
+var T1 = document.getElementById(t1);
+var T2 = document.getElementById(t2);
+var T3 = document.getElementById(t3);
+var T4 = document.getElementById(t4);
+$("#"+t2).next().hide(); 
+DecInput( T1, T2, T3, T4,str);
+var O1 = Info;
+document.getElementById(O1).style.display="block";//显示
+if(str=='1')
+{
+display_modify_button();
+}
+} 
+//恢复全部文字框、隐藏全部input
+function total_re() {
+var C=new Array(8);
+C[0]='company_name'       ;
+C[1]='legal_person'       ;
+C[2]='legal_person_phone' ;
+C[3]='company_address'    ;
+C[4]='remark'             ;
+C[5]='mobile_phone'       ;
+C[6]='email'              ;
+C[7]='language'           ;
+for(i=0;i<8;i++)
+{
+  re(C[i],'0');  
+} 
+document.getElementById('total_submit_button').style.display="none";//不显示
+document.getElementById('total_cancel_button').style.display="none";//不显示
+display_modify_button();          
+} 
+//改css
+function mv_css(id){
+
+}
+//添加
+function AddInput(Info,str) {
+            var t1Head = Info +"_head";
+            var T1Head = document.getElementById(t1Head);
+
+            //创建input
+            var input = document.createElement("input");
+            input.type = "text";
+            input.id = Info+"_input";
+            input.name = Info+"_name";
+			input.style="width:300px";
+            T1Head.appendChild(input);
+            $("#"+Info+"_input").textbox();
+           
+			 
+			
+			if(str=='1')
+			{
+            //创建一个按钮
+            var btn=document.createElement("a"); 
+            btn.id = Info+"_btn1";
+            var t=document.createTextNode("提交"); 
+            btn.onclick=function() { update_Info(Info,'1'); }
+            btn.appendChild(t);
+            T1Head.appendChild(btn);
+			$("#"+Info+"_btn1").linkbutton();
+             //创建一个按钮
+            var btn=document.createElement("a"); 
+            btn.id = Info+"_btn2";   
+            var t=document.createTextNode("取消"); 
+           btn.onclick=function() { re(Info,'1'); }
+            btn.appendChild(t);
+            T1Head.appendChild(btn);
+            $("#"+Info+"_btn2").linkbutton();
+			}
+           
+        }
+		 
+//创建总修改框
+function total_AddInput() {
+var C=new Array(8);
+C[0]='company_name'       ;
+C[1]='legal_person'       ;
+C[2]='legal_person_phone' ;
+C[3]='company_address'    ;
+C[4]='remark'             ;
+C[5]='mobile_phone'       ;
+C[6]='email'              ;
+C[7]='language'           ;
+for(i=0;i<8;i++)
+{
+          AddInput(C[i],'0');       
+}           
+      //显示提交按钮
+document.getElementById("total_submit_button").style.display="block";//显示
+      //显示取消按钮
+document.getElementById("total_cancel_button").style.display="block";//显示
+}
+		
+		
+//每次删除最后一个input标签
+ function DecInput(T1,T2,T3,T4,str) {
+     T1.removeChild(T2);
+	 if(str=='1')
+	 {
+     T1.removeChild(T3);
+     T1.removeChild(T4);
+	 }
+    }
+	
+
+	
+//		总更新按钮Info	
+function total_update_Info() {
+var C=new Array(8);
+C[0]='company_name'       ;
+C[1]='legal_person'       ;
+C[2]='legal_person_phone' ;
+C[3]='company_address'    ;
+C[4]='remark'             ;
+C[5]='mobile_phone'       ;
+C[6]='email'              ;
+C[7]='language'           ;
+for(i=0;i<8;i++)
+{
+  update_Info(C[i],'0');
+}
+      //隐藏提交按钮
+document.getElementById("total_submit_button").style.display="none";//显示
+      //隐藏取消按钮
+document.getElementById("total_cancel_button").style.display="none";//显示
+      //显示修改按钮
+display_modify_button(); 
+}
+  //    更新Info
+function update_Info(Info,str) {
+  
+     var t2=Info+"_input";
+     var T2 = document.getElementById(t2).value;
+		var data={'id' : 2},t1=Info;
+		data[t1] = T2;
+		//console.log(data);
+		var t3="/companyInfoController/update_"+Info;
+	//	 alert(t3);
+	    $.ajax({
+	        url : t3,
+	        type : 'GET',/*POST*/
+	        contentType : 'application/json',
+	        dataType : 'json',
+	        data : data,
+	        
+			success : function(data2)
+			{
+	//		alert("111");
+			} 
+	            
+           });
+		//   alert("修改成功！");
+	       sleep(10);
+		   re(Info,str);
+		   show_Info(Info);
+		}
+		
+//		覆盖旧的Info
+function show_Info(Info) {
+        var data = {'id' : 2};   
+		var t3="/companyInfoController/seek_"+Info;
+		var t1=Info;	                               
+	//	 alert(t3);
+	var result;
+	 
+      $.ajax({
+		url: t3 ,
+        type : 'GET',
+        contentType : 'application/json',
+		dataType : 'text',
+	//	async : false,
+	    data : data,
+	   
+        success : function(data) {
+		    result=data;
+		//	alert(result);
+		//	console.log(result);
+		//	document.getElementById(t1).innerHTML="";
+			document.getElementById(t1).innerHTML=result;
+            
+        },
+		complete:function(){
+		//    document.getElementById(t1).innerHTML=result;
+		}
+        });
+		return result;
+		//document.getElementById(t1).innerHTML=result;
+        
+		}
+//    修改密码的
+function password(){
+$('#password_dialog').dialog('open');
+} 
+function confirm_password(){
+var data = {
+             'id' : 2,
+             'login_password': $("#newPassword").val(),
+           }; 
+		console.log(data);
+		
+		var textOldPassword=$("#oldPassword").val();
+	//	alert(textOldPassword);
+		var textNewPassword=$("#newPassword").val();
+	//	alert(textNewPassword);
+		var textRePassword=$("#rePassword").val();
+	//	alert(textRePassword);
+		var textLoginPassword = document.getElementById("login_password").innerHTML;
+	//	alert(textLoginPassword);
+		if(textLoginPassword==textOldPassword)
+		{
+		if(textNewPassword==textRePassword)
+		{
+		var data2;
+	    $.ajax({
+	        url : '/companyInfoController/update_password',
+	        type : 'GET',/*POST*/
+	        contentType : 'application/json',
+	        dataType : 'json',
+	        data : data,
+			success : function(data2)
+			{
+			alert(111);
+			}       
+           });
+		   alert("修改成功！");
+		   $('#password_dialog').dialog('close');
+		   show_Info("login_password");
+		}
+		else
+		{
+	     	alert("两次密码不一致！");
+        }
+        }
+        else
+        {
+            alert("密码不对！");
+        }
+}
+function sleep(delay) {
+  var start = (new Date()).getTime();
+  while ((new Date()).getTime() - start < delay) {
+    continue;
+  }
+}
+//暂时没用的function
+function update() {
+		var data = {
+			'id' : $("#id").val(),
+			'companyName': $("#company_name").val(),
+			'loginPassword': $("#login_password").val(),
+			'legalPerson': $("#legal_person").val(),
+			'legalPersonPhone': $("#legal_person_phone").val(),
+			'companyAddress': $("#company_address").val(),
+			'confirmPassword': $("#confirm_password").val(),
+		};
+		console.log(data);
+		var text_login_password=$("#login_password").val();
+		alert(text_login_password);
+		var text_confirm_password=$("#confirm_password").val();
+		alert(text_confirm_password);
+		if(text_confirm_password==text_login_password)
+		{
+		var data2;
+	    $.ajax({
+	        url : '/companyInfoController/update',
+	        type : 'GET',/*POST*/
+	        contentType : 'application/json',
+	        dataType : 'json',
+	        data : data,
+			success : function(data2)
+			{
+	//		alert(111);
+			} 
+	            
+           });
+		   alert("修改成功！");
+		}
+		else
+		{
+	     	alert("两次密码不一致！");
+        }
+    }
+</script>   
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
